@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шпаргалка по дискретной математике</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0.5cm;
+        }
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 9.5pt;
+            line-height: 1.2;
+            column-count: 2;
+            column-gap: 0.6cm;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            column-span: all;
+            text-align: center;
+            font-size: 12pt;
+            margin: 0 0 0.2em 0;
+        }
+        h2 {
+            font-size: 10.5pt;
+            margin: 0.4em 0 0.1em 0;
+            border-bottom: 1px solid #000;
+        }
+        h3 {
+            font-size: 9.5pt;
+            margin: 0.2em 0 0.1em 0;
+        }
+        ul, ol {
+            margin: 0.1em 0 0.2em 1.2em;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 0.1em;
+        }
+        .box {
+            border: 1px solid #000;
+            padding: 0.2em 0.3em;
+            margin: 0.2em 0;
+        }
+        .formula {
+            font-family: 'Cambria Math', 'Times New Roman', serif;
+            font-style: italic;
+            margin: 0.1em 0;
+        }
+        .small {
+            font-size: 8.5pt;
+        }
+        .center {
+            text-align: center;
+        }
+        .no-break {
+            break-inside: avoid;
+        }
+        sup, sub {
+            font-size: 0.7em;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0.1em 0;
+        }
+        td, th {
+            border: 1px solid #000;
+            padding: 0.1em 0.2em;
+            font-size: 8.5pt;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Материалы для дискретной математики (КР)</h1>
+
+<h2>1. Принципы индукции</h2>
+
+<div class="box no-break">
+    <strong>ПМИ (Принцип математической индукции)</strong><br>
+    Если <span class="formula">P(0)</span> и <span class="formula">∀n (P(n) → P(n+1))</span>, то <span class="formula">∀n P(n)</span>.<br>
+    <span class="small">Через множества: если 0∈X и ∀n (n∈X → n+1∈X), то X=ℕ.</span>
+</div>
+
+<div class="box no-break">
+    <strong>ПНЧ (Принцип наименьшего числа)</strong><br>
+    <span class="formula">∃n Q(n) → ∃n (Q(n) ∧ ∀m (m &lt; n → ¬Q(m)))</span>.<br>
+    <span class="small">Иначе: любое непустое подмножество ℕ имеет наименьший элемент.</span><br>
+    <span class="small">Эквивалентно: если X⊆ℕ, X≠∅, то ∃min X.</span>
+</div>
+
+<div class="box no-break">
+    <strong>ПСИ (Принцип сильной индукции)</strong><br>
+    <span class="formula">∀n ((∀m (m &lt; n → P(m))) → P(n)) → ∀n P(n)</span>.<br>
+    <span class="small">Или с базой: P(0) и ∀n ((∀m&lt;n P(m)) → P(n)) ⇒ ∀n P(n).</span><br>
+    <span class="small">На шаге можно предполагать все P(m) для m &lt; n, а не только P(n−1).</span>
+</div>
+
+<div class="small no-break">
+    <strong>Эквивалентность:</strong> ПМИ ⇔ ПНЧ ⇔ ПСИ.<br>
+    <em>Док-во ПНЧ ⇒ ПМИ:</em> пусть есть контрпример, берём наименьший n₀ с ¬P(n₀). Тогда для m&lt;n₀ P(m). Если n₀=0 — противоречие с P(0); если n₀=m+1 — противоречие с шагом.<br>
+    <em>Док-во ПМИ ⇒ ПСИ:</em> вводим Q(n) = ∀m&lt;n P(m) и доказываем ∀n Q(n) обычной индукцией.
+</div>
+
+<h2>2. Деление с остатком</h2>
+
+<div class="box no-break">
+    <strong>Теорема.</strong> Для любых a∈ℤ, b∈ℤ, b≠0, существуют единственные q∈ℤ и r∈ℕ такие, что
+    <span class="formula">a = bq + r,  0 ≤ r &lt; |b|</span>.<br>
+    <span class="small">q — неполное частное, r — остаток.</span>
+</div>
+
+<div class="small no-break">
+    <strong>Следствие.</strong> a mod b — остаток от деления a на b, 0 ≤ a mod b &lt; |b|.<br>
+    <em>Пример:</em> −59 = −11·6 + 7, значит −59 mod 11 = 7 (остаток всегда неотрицателен).
+</div>
+
+<h2>3. Сравнение по модулю</h2>
+
+<div class="box no-break">
+    <strong>Определение.</strong> Пусть m &gt; 1. Говорят, что a сравнимо с b по модулю m, если m | (a − b).<br>
+    Обозначение: <span class="formula">a ≡ b (mod m)</span>.
+</div>
+
+<div class="small no-break">
+    <strong>Эквивалентные определения:</strong><br>
+    • a ≡ b (mod m) ⇔ a mod m = b mod m.<br>
+    • a ≡ b (mod m) ⇔ ∃k∈ℤ: a = b + mk.<br>
+    <br>
+    <strong>Свойства (m &gt; 1):</strong><br>
+    1) a ≡ a (mod m) — рефлексивность.<br>
+    2) a ≡ b ⇒ b ≡ a — симметричность.<br>
+    3) a ≡ b, b ≡ c ⇒ a ≡ c — транзитивность.<br>
+    4) Если a ≡ b и c ≡ d, то a+c ≡ b+d, ac ≡ bd.<br>
+    5) Если a ≡ b, то aⁿ ≡ bⁿ (mod m) для n∈ℕ.<br>
+    6) Числа 0, 1, …, m−1 попарно не сравнимы по модулю m.
+</div>
+
+<h2>4. Делимость</h2>
+
+<div class="box no-break">
+    <strong>Определение.</strong> a | b (a делит b), если ∃k∈ℤ: b = ak.
+</div>
+
+<div class="small no-break">
+    <strong>Свойства:</strong><br>
+    1) a | 0, ±1 | a, a | a.<br>
+    2) 0 | a ⇒ a = 0.<br>
+    3) a | b и b | c ⇒ a | c (транзитивность).<br>
+    4) a | b и a | c ⇒ a | (b ± c).<br>
+    5) a | b и b | a ⇒ a = ±b.<br>
+    6) Если a | b и a | (b+c), то a | c.
+</div>
+
+<h2>5. Простые числа и разложение</h2>
+
+<div class="box no-break">
+    <strong>Простое число</strong> — n &gt; 1, которое делится только на ±1 и ±n.<br>
+    <strong>Составное</strong> — n &gt; 1, не являющееся простым (т.е. n = km, 1 &lt; k,m &lt; n).
+</div>
+
+<div class="box no-break">
+    <strong>Основная теорема арифметики (ОТА).</strong><br>
+    Любое n &gt; 1 единственным образом (с точностью до порядка множителей) представляется в виде
+    <span class="formula">n = p₁<sup>α₁</sup> p₂<sup>α₂</sup> … p<sub>t</sub><sup>α<sub>t</sub></sup></span>,
+    где p<sub>i</sub> — попарно различные простые, α<sub>i</sub> ∈ ℕ.
+</div>
+
+<div class="small no-break">
+    <strong>Степень простого p в разложении n:</strong> deg(p, n) = α, если p<sup>α</sup> || n (т.е. p<sup>α</sup> | n, но p<sup>α+1</sup> ∤ n).<br>
+    <em>Пример:</em> 40 = 2³·5¹ ⇒ deg(2,40)=3, deg(5,40)=1, deg(7,40)=0.
+</div>
+
+<div class="box no-break">
+    <strong>Критерий делимости через разложение.</strong><br>
+    Для a,b ≠ 0: <span class="formula">a | b ⇔ ∀p (простое) deg(p,a) ≤ deg(p,b)</span>.
+</div>
+
+<div class="small no-break">
+    <strong>Бесконечность простых.</strong> Если p₁,…,p<sub>n</sub> — все простые, то N = p₁…p<sub>n</sub> + 1 не делится ни на одно p<sub>i</sub>, противоречие.
+</div>
+
+<h2>6. Признаки делимости</h2>
+
+<div class="small no-break">
+    <table>
+        <tr><td><strong>На 2</strong></td><td>последняя цифра чётная (0,2,4,6,8)</td></tr>
+        <tr><td><strong>На 3</strong></td><td>сумма цифр делится на 3</td></tr>
+        <tr><td><strong>На 4</strong></td><td>последние две цифры образуют число, делящееся на 4</td></tr>
+        <tr><td><strong>На 5</strong></td><td>последняя цифра 0 или 5</td></tr>
+        <tr><td><strong>На 6</strong></td><td>делится на 2 и на 3</td></tr>
+        <tr><td><strong>На 8</strong></td><td>последние три цифры образуют число, делящееся на 8</td></tr>
+        <tr><td><strong>На 9</strong></td><td>сумма цифр делится на 9</td></tr>
+        <tr><td><strong>На 10</strong></td><td>последняя цифра 0</td></tr>
+        <tr><td><strong>На 11</strong></td><td>разность суммы цифр на чётных и нечётных местах делится на 11</td></tr>
+    </table>
+    <em>Пример на 11:</em> 12341: (1+3+1) − (2+4) = 5 − 6 = −1, не делится.<br>
+    2541: (2+4) − (5+1) = 6 − 6 = 0 ⇒ делится.
+</div>
+
+<h2>7. Дополнительно (полезно)</h2>
+
+<div class="small no-break">
+    <strong>НОД и НОК.</strong><br>
+    gcd(a,b) = ∏ p<sup>min(α<sub>p</sub>, β<sub>p</sub>)</sup>,  lcm(a,b) = ∏ p<sup>max(α<sub>p</sub>, β<sub>p</sub>)</sup>.<br>
+    gcd(a,b)·lcm(a,b) = |ab|.<br><br>
+    <strong>Алгоритм Евклида.</strong> gcd(a,b) = gcd(b, a mod b).<br><br>
+    <strong>Взаимная простота.</strong> a и b взаимно просты ⇔ gcd(a,b)=1 ⇔ ∀p min(α<sub>p</sub>,β<sub>p</sub>)=0.<br><br>
+    <strong>Сокращение сравнений.</strong> Если ac ≡ bc (mod m) и gcd(c,m)=1, то a ≡ b (mod m).
+</div>
+
+<div class="small no-break" style="margin-top:0.3em; border-top:1px dashed #000; padding-top:0.2em;">
+    <strong>Формулы для запоминания:</strong><br>
+    • a ≡ b (mod m) ⇔ m | (a−b).<br>
+    • a | b ⇔ ∃k b=ak.<br>
+    • ПМИ: P(0) ∧ ∀n(P(n)→P(n+1)) ⇒ ∀n P(n).<br>
+    • ПНЧ: X≠∅ ⇒ ∃min X.<br>
+    • ПСИ: (∀n((∀m&lt;n P(m))→P(n))) ⇒ ∀n P(n).<br>
+    • ОТА: n = p₁<sup>α₁</sup>…p<sub>t</sub><sup>α<sub>t</sub></sup> единственно.
+</div>
+
+</body>
+</html>
