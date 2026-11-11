@@ -1,5 +1,6 @@
 import os
-from UliServer import UliServer, HttpMessage
+from UliServer import UliServer
+from HttpMessage import HttpMessage
 import asyncio
 server = UliServer(host = "localhost", port = 5000)
 async def main():
